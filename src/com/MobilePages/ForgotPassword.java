@@ -5,6 +5,9 @@ import org.openqa.selenium.WebDriver;
 
 import com.BaseSetup.BaseSetUp;
 
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.AndroidKeyCode;
+
 public class ForgotPassword extends BaseSetUp{
 	
 
@@ -16,6 +19,8 @@ public class ForgotPassword extends BaseSetUp{
 		By emailId = By.id("emailET");
 
 		By pin = By.id("pinFirstDigitET");
+		
+		By dashboard = By.xpath("//*[@text ='Dashboard']");
 
 		By forgotPass = By.id("nhs.ibd.com.nhsibd:id/forgotPinTV");
 
@@ -31,31 +36,28 @@ public class ForgotPassword extends BaseSetUp{
 			
 		By goBtn = By.xpath("//*[@class='btn btn-dark']");
 		
-		By oldPin = By.id("nhs.ibd.com.nhsibd:id/oldPinFirstDigitET");
+		By checkInbox = By.id("Check Any Inbox!");
 		
-		By newPin = By.id("newPinFirstDigitET");
+		By gotoInbox = By.id("GO!");
 		
-		By repeatNewPin = By.id("repeatPinFirstDigitET");
+		By webUrl = By.id("com.android.browser:id/url");
+		
+		By srch = By.id("Search");
+		
+		By googleSrch = By.id("Google Search");
+		
+		By openSite = By.xpath("//android.view.View[@content-desc='Mailinator https://mailinator.com']");
+		
+		By clickOnResetMail = By.xpath("(//android.view.View[@content-desc='NHS Password reset'])[1]");
+		
+		By getNewPass = By.xpath("//android.view.View[contains(@content-desc,'Your new PIN is')]");
 	  
 	  
 
 
-	  public ForgotPassword forgotPassword(String userName) {
+	  @SuppressWarnings("rawtypes")
+	public ForgotPassword forgotPassword(String userName) {
 		  
-//			System.out.println("Entering Your Email ");
-//
-//			waitForClickabilityOf(emailId);
-//
-//			driver.findElement(emailId).clear();
-//
-//			driver.findElement(emailId).sendKeys(userName);
-//
-//			System.out.println("Entering the Pin  :" + pin);
-//
-//			waitForClickabilityOf(pin);
-//
-//			driver.findElement(pin).sendKeys(password);
-//			
 			System.out.println("Clicking on Forgot your PIN");
 
 			waitForClickabilityOf(forgotPass);
@@ -76,41 +78,135 @@ public class ForgotPassword extends BaseSetUp{
 
 			waitForClickabilityOf(resendBtn);
 
-			driver.findElement(resendBtn).click();
+			driver.findElement(resendBtn).click();	
+
+			System.out.println("Going Back to Home");
 			
-			boolean resend = driver.findElement(resendBtn).isDisplayed();
+			((AndroidDriver)driver).pressKeyCode(AndroidKeyCode.BACK);
 			
-			if (resend==true) {
+			((AndroidDriver)driver).pressKeyCode(AndroidKeyCode.HOME);
+			
+//
+//			driver.navigate().back();
+//			
+//			driver.navigate().back();
+			
+			System.out.println("Clicking on Menu Button");
+
+			driver.findElement(menu).click();
+			
+			System.out.println("Opening the Browser");
+					
+			driver.findElement(searchBar).sendKeys("Browser");
+					
+			driver.findElement(app).click();
+			
+			System.out.println("Opening the Website");
+			
+			waitForClickabilityOf(webUrl);
+
+			driver.findElement(webUrl).clear();
+			
+			driver.findElement(webUrl).sendKeys("https://mailinator.com");
+			
+			((AndroidDriver)driver).pressKeyCode(AndroidKeyCode.ENTER);
+						
+			System.out.println("Opening the Inbox : "+userName);
+			
+			waitForClickabilityOf(checkInbox);
+
+			driver.findElement(checkInbox).sendKeys(userName);
+			
+			waitForClickabilityOf(gotoInbox);
+
+			driver.findElement(gotoInbox).click();
+			
+			System.out.println("Clicking on Reset Mail to get the PIN");
+			
+			waitForClickabilityOf(clickOnResetMail);
+
+			driver.findElement(clickOnResetMail).click();
+			
+//			waitForClickabilityOf(getNewPass);
+			
+			waitForVisibilityOf(getNewPass);
+			
+			// Set to "getAttribute("contentDescription")" to get the whole text
+
+			String Pass = driver.findElement(getNewPass).getAttribute("contentDescription");
+			
+			System.out.println(Pass);
+			
+//			char ch[] = newPass.toCharArray();
+			
+//			System.out.println(ch.length);
+			
+//			int newPin = 0;
+			
+			String fPass = "";
+			
+//			boolean notFirst = false;
+					
+			for (char c : Pass.toCharArray()) {
 				
-				System.out.println("Failed to test Forgot Password ");
+				if (Character.isDigit(c)) {
+					
+					fPass = fPass + Character.getNumericValue(c);
+					
+//					System.out.print((notFirst? "" : "") + c);
+					
+//					notFirst = true;
+					
+				}
+				
+     		}
+						
+//			System.out.println(fPass);
+
+// We need to get the password from the Attribute text
+			
+			((AndroidDriver)driver).pressKeyCode(AndroidKeyCode.BACK);
+			
+			((AndroidDriver)driver).pressKeyCode(AndroidKeyCode.HOME);
+			
+//			driver.navigate().back();
+//			
+//			driver.navigate().back();
+			
+			System.out.println("Clicking on Menu Button");
+
+			driver.findElement(menu).click();
+			
+			System.out.println("Opening the App to Verify the New Pin");
+					
+			driver.findElement(searchBar).sendKeys("My IBD Care");
+					
+			driver.findElement(app).click();
+			
+			System.out.println("Entering Your Email ");
+
+			waitForClickabilityOf(emailId);
+
+			driver.findElement(emailId).clear();
+
+			driver.findElement(emailId).sendKeys(userName);
+
+			waitForClickabilityOf(pin);
+
+			driver.findElement(pin).sendKeys(fPass);
+			
+			boolean Dashboard = driver.findElement(dashboard).isDisplayed();
+			
+			if ( Dashboard == true) {
+				
+				System.out.println("Successfully Logged in with new Pin ");
 				
 			} else {
 				
-				System.out.println("Successfully Tested Forgot Password ");
-
+				System.out.println("Failed to Login with new Pin");
+				
 			}
 			
-//			System.out.println("Going Back to Home");
-//			
-//
-//			driver.navigate().back();
-//			
-//			driver.navigate().back();
-//			
-//			System.out.println("Clicking on Menu Button");
-//
-//			driver.findElement(menu).click();
-//			
-//			System.out.println("Opening the Browser to get the Pin");
-//					
-//			driver.findElement(searchBar).sendKeys("Browser");
-//					
-//			driver.findElement(app).click();
-//			
-//			driver.get("mailinator.com");
-//		  
-//		  
-//			driver.findElement(searchBar).sendKeys("My IBD Care");
 			
 		return new ForgotPassword(driver);
 		 
