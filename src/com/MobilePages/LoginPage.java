@@ -25,6 +25,10 @@ public class LoginPage extends BaseSetUp {
 	
 	By dashboard = By.xpath("//*[@text ='Dashboard']");
 	
+	By errorMsg = By.id("nhs.ibd.com.nhsibd:id/snackbar_text");
+	
+	String eMsg = "invalid email or pin";
+	
 	
 
 	public LoginPage accountLogin(String userName, String pin) {
@@ -48,6 +52,8 @@ public class LoginPage extends BaseSetUp {
 		waitForClickabilityOf(dashboard);
 		
 		boolean Dashboard = driver.findElement(dashboard).isDisplayed();
+		
+//		boolean ErrorMsg = driver.findElement(errorMsg).isDisplayed();
 		
 		if ( Dashboard == true) {
 			
