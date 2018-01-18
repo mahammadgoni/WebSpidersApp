@@ -28,19 +28,24 @@ public class ChangeMyPin extends BaseSetUp{
 	
 	By oldPin = By.id("nhs.ibd.com.nhsibd:id/oldPinFirstDigitET");
 	
-//	By newPin = By.id("nhs.ibd.com.nhsibd:id/newPinFirstDigitET");
+	By newPin = By.id("nhs.ibd.com.nhsibd:id/newPinFirstDigitET");
 	
-	By newPin = By.xpath("//*[@resource-id='nhs.ibd.com.nhsibd:id/newPinFirstDigitET']");
+	By dashboard = By.xpath("//*[@text ='Dashboard']");
 	
-	By repeatNewPin = By.xpath("//*[@resource-id='nhs.ibd.com.nhsibd:id/repeatPinFirstDigitET']");
+	By menu = By.id("Apps");
+
+	By searchBar = By.id("com.android.launcher3:id/search_box_container");
 	
-//	By repeatNewPin = By.id("nhs.ibd.com.nhsibd:id/repeatPinFirstDigitET");
+	By app = By.xpath("//*[@bounds='[48,288][294,581]']");
+		
+	By repeatNewPin = By.id("nhs.ibd.com.nhsibd:id/repeatPinFirstDigitET");
 
 	public ChangeMyPin(WebDriver driver) {
 		super(driver);
 		
 	}
 		
+	@SuppressWarnings("rawtypes")
 	public ChangeMyPin chnageMyPin(String userName, String password,String newPassword){
 		
 
@@ -94,31 +99,66 @@ public class ChangeMyPin extends BaseSetUp{
 
 			driver.findElement(changePin).click();
 
-			// Enter Old Pin No
+//			Enter Old Pin No
 			
 			System.out.println("Entering Old Pin  :"+password);
 			
-	        waitForClickabilityOf(oldPin);
-
-			driver.findElement(oldPin).sendKeys(password);
-
-			// Enter New Pin No
-			
 			System.out.println("Entering New Pin  :"+newPassword);
 			
-	        waitForClickabilityOf(newPin);
+			System.out.println("Repeating New Pin  :"+newPassword);
+			
+	        waitForClickabilityOf(oldPin);
+
+			driver.findElement(oldPin).sendKeys(password+newPassword+newPassword);
+			
+			System.out.println("Going Back to Home");
+			
+			((AndroidDriver)driver).pressKeyCode(AndroidKeyCode.BACK);
+					
+			((AndroidDriver)driver).pressKeyCode(AndroidKeyCode.HOME);
+			
+			System.out.println("Clicking on Menu Button");
+
+			driver.findElement(menu).click();
+			
+			System.out.println("Opening the App to Verify the New Pin");
+					
+			driver.findElement(searchBar).sendKeys("My IBD Care");
+					
+			driver.findElement(app).click();
+			
+			waitForClickabilityOf(pin);
+
+			driver.findElement(pin).sendKeys(newPassword);
+			
+			boolean Dashboard = driver.findElement(dashboard).isDisplayed();
+			
+			if ( Dashboard == true) {
+				
+				System.out.println("Successfully Logged in with new Pin ");
+				
+			} else {
+				
+				System.out.println("Failed to Login with new Pin");
+				
+			}
+
+//			Enter New Pin No
+			
+
+			
+//	        waitForClickabilityOf(newPin);
 	        
 //   one more test chnages
 	        
-			driver.findElement(newPin).sendKeys(newPassword);
+//			driver.findElement(newPin).sendKeys(newPassword);
 
-			// Enter Repeat New Pin No
+//			 Enter Repeat New Pin No
 			
-			System.out.println("Repeat New Pin  :"+newPassword);
 			
-	        waitForClickabilityOf(repeatNewPin);
-			
-			driver.findElement(repeatNewPin).sendKeys(newPassword);
+//	        waitForClickabilityOf(repeatNewPin);
+//			
+//			driver.findElement(repeatNewPin).sendKeys(newPassword);
 		
 		return new ChangeMyPin(driver);
 		

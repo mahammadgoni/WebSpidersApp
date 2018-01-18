@@ -85,12 +85,7 @@ public class ForgotPassword extends BaseSetUp{
 			((AndroidDriver)driver).pressKeyCode(AndroidKeyCode.BACK);
 			
 			((AndroidDriver)driver).pressKeyCode(AndroidKeyCode.HOME);
-			
-//
-//			driver.navigate().back();
-//			
-//			driver.navigate().back();
-			
+						
 			System.out.println("Clicking on Menu Button");
 
 			driver.findElement(menu).click();
@@ -168,11 +163,7 @@ public class ForgotPassword extends BaseSetUp{
 			((AndroidDriver)driver).pressKeyCode(AndroidKeyCode.BACK);
 			
 			((AndroidDriver)driver).pressKeyCode(AndroidKeyCode.HOME);
-			
-//			driver.navigate().back();
-//			
-//			driver.navigate().back();
-			
+						
 			System.out.println("Clicking on Menu Button");
 
 			driver.findElement(menu).click();
