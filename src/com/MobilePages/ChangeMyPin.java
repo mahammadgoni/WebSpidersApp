@@ -108,7 +108,7 @@ public class ChangeMyPin extends BaseSetUp{
 			
 	        waitForClickabilityOf(newPin);
 	        
-	        // new test changes
+
 	        
 			driver.findElement(newPin).sendKeys(newPassword);
 
