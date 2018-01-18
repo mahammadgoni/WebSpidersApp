@@ -5,6 +5,9 @@ import org.openqa.selenium.WebDriver;
 
 import com.BaseSetup.BaseSetUp;
 
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.AndroidKeyCode;
+
 
 
 public class ChangeMyPin extends BaseSetUp{
@@ -27,9 +30,9 @@ public class ChangeMyPin extends BaseSetUp{
 	
 //	By newPin = By.id("nhs.ibd.com.nhsibd:id/newPinFirstDigitET");
 	
-	By newPin = By.xpath("//*[@ resource-id='nhs.ibd.com.nhsibd:id/newPinFirstDigitET']");
+	By newPin = By.xpath("//*[@resource-id='nhs.ibd.com.nhsibd:id/newPinFirstDigitET']");
 	
-	By repeatNewPin = By.xpath("//*[@ resource-id='nhs.ibd.com.nhsibd:id/repeatPinFirstDigitET']");
+	By repeatNewPin = By.xpath("//*[@resource-id='nhs.ibd.com.nhsibd:id/repeatPinFirstDigitET']");
 	
 //	By repeatNewPin = By.id("nhs.ibd.com.nhsibd:id/repeatPinFirstDigitET");
 
@@ -104,6 +107,8 @@ public class ChangeMyPin extends BaseSetUp{
 			System.out.println("Entering New Pin  :"+newPassword);
 			
 	        waitForClickabilityOf(newPin);
+	        
+//	        ((AndroidDriver)driver).pressKeyCode(AndroidKeyCode.ENTER);
 			
 			driver.findElement(newPin).sendKeys(newPassword);
 
@@ -116,6 +121,7 @@ public class ChangeMyPin extends BaseSetUp{
 			driver.findElement(repeatNewPin).sendKeys(newPassword);
 		
 		return new ChangeMyPin(driver);
+		
 		
 	}
 

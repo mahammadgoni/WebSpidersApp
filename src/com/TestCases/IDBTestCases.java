@@ -48,7 +48,7 @@ public class IDBTestCases extends AndroidSetUp{
 		
 //		System.out.println("Screen Recording Started");
 
-		ts.StartRecord();
+//		ts.StartRecord();
 			
 //		prepareAndStartAppium();
 
@@ -63,7 +63,7 @@ public class IDBTestCases extends AndroidSetUp{
 			
 //		System.out.println("Screen Recording Stopped");
 		
-		ts.StopRecord();
+//		ts.StopRecord();
 	
 //		sr.StopRecord();
 
@@ -103,7 +103,7 @@ public class IDBTestCases extends AndroidSetUp{
 //	public void forgorPasswordTest() throws MalformedURLException{
 //		prepareAndStartAppium("Google Nexus 5", "192.168.57.101:5555", "6.0");
 //		System.out.println("Executing : Forgot Password Test");
-//		new ForgotPassword(driver).forgotPassword("skmahammad.goni@webspider.com");
+//		new ForgotPassword(driver).forgotPassword("batman@mailinator.com");
 //		
 //	}
 //
@@ -118,7 +118,10 @@ public class IDBTestCases extends AndroidSetUp{
 //	public void createAccountWithValidDetailsTest() throws InterruptedException, MalformedURLException {
 //		prepareAndStartAppium("Google Nexus 5", "192.168.57.101:5555", "6.0");
 //		System.out.println("Executing : Create Account With Valid Details Test");
-//		new CreateAccountPage(driver).createAccount("Uber Man", "uberman@mailinator.com", "2345", "09886543210", "Black");
+//		
+//		// Need to change the mail id to create new Account
+//		
+//		new CreateAccountPage(driver).createAccount("Uder Man", "udeerman@mailinator.com", "2345", "09886543210", "Black");
 //	}
 //	
 //	@Test(priority = 8)
@@ -239,18 +242,16 @@ public class IDBTestCases extends AndroidSetUp{
 //		new EmailMySummary(driver).emailMySummary("fatman@mailinator.com", "1234", "fatman@mailinator.com");
 //		
 //	}
-	
-	@Test(priority = 14)
+//	
+	@Test(priority = 1)
 	public void changeMyPinNoTest() throws InterruptedException, MalformedURLException {
 		prepareAndStartAppium("Google Nexus 5", "192.168.57.101:5555", "6.0");
-		System.out.println("Executing Change My Pin No Test");
-		new ChangeMyPin(driver).chnageMyPin("skmahammad.goni@webspiders.com", "5045", "2345");
+		System.out.println("Executing : Change My Pin No Test");
+		new ChangeMyPin(driver).chnageMyPin("skmahammad.goni@webspiders.com", "5490", "2345");
 		gotoHome();
         openTheApp();
 		new LoginPage(driver).accountLogin("skmahammad.goni@webspiders.com", "2345");
         
 	}
-	
-
-
 }
+	
