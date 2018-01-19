@@ -33,6 +33,16 @@ public class MyAppointments extends BaseSetUp{
 	
 	By bloodTest = By.xpath("//*[@text='BLOOD TEST']");
 	
+	By other = By.xpath("//*[@text='OTHER']");
+	
+	By appoName = By.xpath("//*[@resource-id='nhs.ibd.com.nhsibd:id/visitTypeTV'][@instance='6']");
+	
+	By appoTime = By.xpath("//*[@bounds='[273,554][362,603]']");
+	
+	By appoDate = By.xpath("//*[@bounds='[63,486][165,607]']");
+	
+	By appoMonth = By.xpath("//*[@bounds='[55,607][172,672]']");
+	
 	By selectTimeAndDate = By.id("dateOfVisitSpinner");
 	
 	By nextMonth = By.id("nhs.ibd.com.nhsibd:id/nextMonthIV");
@@ -40,6 +50,8 @@ public class MyAppointments extends BaseSetUp{
 	By selectDate = By.id("calendar");
 	
 	By selectTime = By.id("selectedTimeTV");
+	
+//	By selectHour = By.id("");
 	
 	By setTimeAndDate = By.id("setDateAndTimeBTN");
 	
@@ -121,9 +133,9 @@ public class MyAppointments extends BaseSetUp{
 		
 		System.out.println("Selecting the Visit Type ");
 		
-        waitForClickabilityOf(radiology);
+        waitForClickabilityOf(bloodTest);
 		
-		driver.findElement(radiology).click();
+		driver.findElement(bloodTest).click();
 		
 		System.out.println("Select Date and Time ");
 		
@@ -176,8 +188,159 @@ public class MyAppointments extends BaseSetUp{
 		}
 			
 		return new MyAppointments(driver);
+				
+	}
+	
+	public MyAppointments editAppointment(String userName,String pass){
+		
+		System.out.println("Clicking on  Your Email ");
+		
+        waitForClickabilityOf(emailId);
+		
+        driver.findElement(emailId).clear();
+        
+		System.out.println("Entering the Email  :"+userName);
+        
+        driver.findElement(emailId).sendKeys(userName);
+        
+        waitForClickabilityOf(pin);
+        
+		System.out.println("Entering the Pin  :"+pass);
+        
+        driver.findElement(pin).sendKeys(pass);
+        
+		System.out.println("Clicking on My Appointments ");
+		
+        waitForClickabilityOf(menuBtn);
+		
+		driver.findElement(menuBtn).click();
+		
+        waitForClickabilityOf(myAppointment);
+		
+		driver.findElement(myAppointment).click();
+				
+		System.out.println("Clicking on Close Button ");
+		
+        waitForClickabilityOf(closeBtn);
+		
+		driver.findElement(closeBtn).click();
+		
+        waitForClickabilityOf(appoName);
+        
+        String AppoName = driver.findElement(appoName).getText();
+        
+//        waitForClickabilityOf(appoDate);
+//        
+//        String AppoDate = driver.findElement(appoDate).getText();
+//        
+//        waitForClickabilityOf(appoMonth);
+//        
+//        String AppoMonth = driver.findElement(appoMonth).getText();
+//        
+//        waitForClickabilityOf(appoTime);
+//        
+//        String AppoTime = driver.findElement(appoTime).getText();
+        
+//        System.out.println("You Have  "+AppoName+" Appointment on "+AppoDate+"-"+AppoMonth+"-2018 at "+AppoTime+" PM");
+        
+        System.out.println("You have an Upcoming "+AppoName+" Appointment!");
+		
+		driver.findElement(appoName).click();
+		
+//		String allDetails = driver.findElement(UpcomingAppointment).getText();
+//		
+//		System.out.println(allDetails);
+		
+		System.out.println("Changing Your Type of Visit ");
+		
+        waitForClickabilityOf(typeOfVisit);
+		
+		driver.findElement(typeOfVisit).click();
+		
+		System.out.println("Selecting your new Visit Type ");
+		
+        waitForClickabilityOf(other);
+		
+		driver.findElement(other).click();
+		
+//		System.out.println("Select new Date and Time ");
+//		
+//        waitForClickabilityOf(selectTimeAndDate);
+//		
+//		driver.findElement(selectTimeAndDate).click();
+//		
+//		System.out.println("Selecting Date "+date);
+//		
+//        waitForClickabilityOf(nextMonth);
+//		
+//		driver.findElement(nextMonth).click();
+//		
+//        waitForClickabilityOf(selectDate);
+//		
+//		driver.findElement(selectDate).sendKeys(date);
+//		
+//		System.out.println("Selecting new Time ");
+//		
+//        waitForClickabilityOf(selectTime);
+//		
+//		driver.findElement(selectTime).click();
+//		
+////        waitForClickabilityOf(selectTime);
+//		
+//		driver.findElement(By.id(hour)).click();
+//		
+//        waitForClickabilityOf(clickOnOkBtn);
+//		
+//		driver.findElement(clickOnOkBtn).click();
+//		
+//        waitForClickabilityOf(setTimeAndDate);
+//		
+//		driver.findElement(setTimeAndDate).click();
+		
+		System.out.println("Editing Appointment ");
+		
+        waitForClickabilityOf(editAppointment);
+		
+		driver.findElement(editAppointment).click();
+		        
+        waitForVisibilityOf(appoName);
+        
+        String AppoName1 = driver.findElement(appoName).getText();
+        
+//        System.out.println(AppoName+"="+AppoName1);
+//
+//        waitForVisibilityOf(appoDate);
+//        
+//        String AppoDate1 = driver.findElement(appoDate).getText();
+//        
+//        waitForVisibilityOf(appoMonth);
+//        
+//        String AppoMonth1 = driver.findElement(appoMonth).getText();
+//                
+//        waitForVisibilityOf(appoTime);
+//        
+//        String AppoTime1 = driver.findElement(appoTime).getText();
+        
+//        System.out.println("You Have new  "+AppoName1+" Appointment on "+AppoDate+"-"+AppoMonth+"-2018 at "+AppoTime+" PM");
+        
+        
+        if (AppoName1.equals(AppoName)) {
+        	
+	        System.out.println("You have the same Upcoming "+AppoName1+" Appointment!");
+        	
+        	System.out.println("Failed to Edit the Appointment ");
+			
+		} else {
+			
+	        System.out.println("You have a new Upcoming "+AppoName1+" Appointment!");
+			
+        	System.out.println("Successfully Edited the Appointment ");
+
+		}
 		
 		
+		
+		return new MyAppointments(driver);
 		
 	}
 	
