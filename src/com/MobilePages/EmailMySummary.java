@@ -40,7 +40,12 @@ public class EmailMySummary extends BaseSetUp{
 	
 	By clickOnSummary = By.xpath("//*[contains(@content-desc,'NHS IBD SUMMARY: From')][@instance='44']");
 	
-	By getAttachMsg = By.xpath("//*[contains(@content-desc,'Medical history attached')]");
+//	By getAttachMsg = By.xpath("//*[contains(@content-desc,'Medical history')]");
+	
+//	By getAttachMsg = By.id("Medical history attached.");
+	
+	By getAttachMsg = By.id("Summary IBD QUESTIONNAIRE");
+	
 
 	public EmailMySummary(WebDriver driver) {
 		super(driver);
@@ -142,11 +147,11 @@ public class EmailMySummary extends BaseSetUp{
 		
 		waitForClickabilityOf(getAttachMsg);
 
-		String AttachedMsg =  driver.findElement(getAttachMsg).getText();
+		boolean AttachedMsg =  driver.findElement(getAttachMsg).isDisplayed();
 		
-		System.out.println(AttachedMsg);
+		System.out.println("Attachement Message is visible :"+AttachedMsg);
 		
-		if (AttachedMsg=="Medical history attached.") {
+		if (AttachedMsg=true) {
 			
 			System.out.println("Successfully got the Attachment ");
 			
