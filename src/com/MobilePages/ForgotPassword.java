@@ -31,14 +31,16 @@ public class ForgotPassword extends BaseSetUp{
 		By searchBar = By.id("com.android.launcher3:id/search_box_container");
 		
 		By app = By.xpath("//*[@bounds='[48,288][294,581]']");
+		
+		By contBtn = By.id("android:id/button1");
 
 		By inboxName = By.id("inboxfield");
 			
 		By goBtn = By.xpath("//*[@class='btn btn-dark']");
 		
-		By checkInbox = By.id("Check Any Inbox!");
+		By checkInbox = By.xpath("//*[@content-desc='Check Any Inbox!']");
 		
-		By gotoInbox = By.id("GO!");
+		By gotoInbox = By.xpath("//*[@content-desc='GO!']");
 		
 		By webUrl = By.id("com.android.browser:id/url");
 		
@@ -97,6 +99,19 @@ public class ForgotPassword extends BaseSetUp{
 			driver.findElement(app).click();
 			
 			System.out.println("Opening the Website");
+			
+			try {
+				
+				waitForClickabilityOf(contBtn);
+
+				driver.findElement(contBtn).click();
+				
+				driver.findElement(contBtn).click();
+				
+			} catch (Exception e) {
+				
+				
+			}
 			
 			waitForClickabilityOf(webUrl);
 

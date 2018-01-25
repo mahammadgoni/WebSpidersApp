@@ -41,6 +41,8 @@ public class CreateAccountPage extends BaseSetUp {
 	
 	By app = By.xpath("//*[@bounds='[48,288][294,581]']");
 	
+	By contBtn = By.id("android:id/button1");
+	
 	By checkInbox = By.id("Check Any Inbox!");
 	
 	By gotoInbox = By.id("GO!");
@@ -161,6 +163,19 @@ public class CreateAccountPage extends BaseSetUp {
 				driver.findElement(app).click();
 				
 				System.out.println("Opening the Website");
+				
+				try {
+					
+					waitForClickabilityOf(contBtn);
+
+					driver.findElement(contBtn).click();
+					
+					driver.findElement(contBtn).click();
+					
+				} catch (Exception e) {
+					
+					
+				}
 				
 				waitForClickabilityOf(webUrl);
 

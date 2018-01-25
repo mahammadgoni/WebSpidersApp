@@ -19,6 +19,8 @@ public class AndroidSetUp {
 	// "nhs.ibd.com.nhsibd.Features.Login.FreshLogin.FreshLoginActivity";
 
 	String activityName = "nhs.ibd.com.nhsibd.Features.Login.FreshLogin.FreshLoginActivity";
+	
+	String apkPath = "/Users/goni/Documents/Automation/IDBAppiumTest/apps/MyIDBCare.apk";
 
 	// String appiumServiceUrl;
 	//
@@ -89,7 +91,7 @@ public class AndroidSetUp {
 
 		capabilities.setCapability("udid", UDID);
 
-		capabilities.setCapability("app", "/Users/goni/Documents/Automation/IDBAppiumTest/apps/MyIDBCare.apk");
+		capabilities.setCapability("app", apkPath);
 
 		// capabilities.setCapability("appPackage", "nhs.ibd.com.nhsibd");
 
@@ -99,11 +101,37 @@ public class AndroidSetUp {
 		// "nhs.ibd.com.nhsibd.Features.Login.FreshLogin.FreshLoginActivity");
 
 		capabilities.setCapability("appActivity", activityName);
+		
+//		capabilities.setCapability("noResetValue", "false");
 
 		driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
 
 		driver.manage().timeouts().implicitlyWait(80, TimeUnit.SECONDS);
 
+	}
+	
+	protected void installApp(){
+		
+		System.out.println("Installing the Application ");
+		
+		driver.installApp(apkPath);
+		
+		System.out.println("Successfully Installed the Application ");
+		
+	}
+	
+	protected void uninstallApp(){
+		
+		System.out.println("Uninstalling the Application the Application");
+		
+		driver.removeApp(appPackagename);
+		
+		System.out.println("Successfully Uninstalled the Application");
+		
+		System.out.println("       ");
+		
+		System.out.println("===============================================");
+		
 	}
 
 	protected void gotoHome() {
@@ -126,6 +154,14 @@ public class AndroidSetUp {
 
 		caps.setCapability("appActivity", activityName);
 
+	}
+	
+	
+	protected void swipeRightToLeft(){
+		
+
+		
+	
 	}
 
 	//
