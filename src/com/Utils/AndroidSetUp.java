@@ -164,29 +164,5 @@ public class AndroidSetUp {
 	
 	}
 
-	//
-	// protected void startAppiumServer(){
-	//
-	// System.out.println("Starting the Appium Server ");
-	//
-	// appiumService = AppiumDriverLocalService.buildDefaultService();
-	//
-	// appiumService.start();
-	//
-	// appiumServiceUrl = appiumService.getUrl().toString();
-	//
-	// System.out.println("Appium Server Address Url : - "+appiumServiceUrl);
-	//
-	//
-	//
-	// }
-	//
-	// protected void stopAppiumServer(){
-	//
-	// System.out.println("Stoping the Appium Server ");
-	//
-	// appiumService.stop();
-	//
-	// }
 
 }
